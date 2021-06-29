@@ -5,7 +5,7 @@ Feature: taint
     Given I have the following config
       """
       <?xml version="1.0"?>
-      <psalm totallyTyped="false">
+      <psalm totallyTyped="true" runTaintAnalysis="true">
         <projectFiles>
           <directory name="."/>
           <ignoreFiles> <directory name="../../vendor"/> </ignoreFiles>
@@ -23,11 +23,12 @@ Feature: taint
 
     namespace Tests\Psalm\LaravelPlugin\Sandbox;
 
-    use \Illuminate\Http\Request;
+    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
 
     function test(Request $request): void {
       $input = $request->input('foo', false);
+      // todo: i think this isnt working because there are several stubs being registered for DB facade.
       DB::raw($input);
     }
     """

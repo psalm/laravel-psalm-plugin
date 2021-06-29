@@ -1,0 +1,36 @@
+<?
+
+namespace Symfony\Component\HttpFoundation;
+
+class Request
+{
+    /**
+     * @psalm-var InputBag
+     */
+    public $request;
+
+    /**
+     * Returns the request body content.
+     *
+     * @param bool $asResource If true, a resource will be returned
+     *
+     * @throws \LogicException
+     *
+     * @psalm-return (
+     *     $asResource is true
+     *     ? resource
+     *     : string
+     * )
+     */
+    public function getContent($asResource = false) {}
+
+    /**
+     * Gets a "parameter" value from any bag.
+     *
+     * @param string $key     The key
+     * @param mixed  $default The default value if the parameter key does not exist
+     *
+     * @psalm-taint-source input
+     */
+    public function get($key, $default = null) {}
+}

@@ -1,0 +1,27 @@
+<?php
+
+namespace Symfony\Component\HttpFoundation;
+
+final class InputBag extends ParameterBag
+{
+    /**
+     * Returns a string input value by name.
+     *
+     * @template D of string|null
+     * @psalm-param D $default
+     * @psalm-return string|D
+     * @psalm-taint-source input
+     */
+    public function get(string $key, $default = null) {}
+
+    /**
+     * Returns the parameters.
+     *
+     * @param string|null $key The name of the parameter to return or null to get them all
+     *
+     * @return array An array of parameters
+     *
+     * @psalm-taint-source input
+     */
+    public function all(string $key = null) {}
+}
